@@ -7,6 +7,8 @@ const orderRoutes = require('./routes/orders')
 const rateLimiter = require('./middleware/rateLimiter')
 const app = express()
 const PORT = process.env.PORT || 3001
+const userRoutes = require('./routes/users');
+
 // Security middleware
 app.use(helmet())
 app.use(cors())
@@ -66,4 +68,10 @@ app.listen(PORT, () => {
     console.log(`Health check: http://localhost:${PORT}/health`)
     console.log(`Environment: ${process.env.NODE_ENV}`)
 })
+
+
+app.use('/api/orders', orderRoutes);
+app.use('/api/users', userRoutes);
+
+
 module.exports = app
