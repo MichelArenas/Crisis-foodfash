@@ -8,6 +8,9 @@ const rateLimiter = require('./middleware/rateLimiter')
 const app = express()
 const PORT = process.env.PORT || 3001
 const userRoutes = require('./routes/users');
+const restaurantRoutes = require('./routes/restaurants');
+const menuRoutes = require('./routes/menus');
+const inventoryRoutes = require('./routes/inventory');
 
 // Security middleware
 app.use(helmet())
@@ -70,8 +73,13 @@ app.listen(PORT, () => {
 })
 
 
+// RUTAS
+
 app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/restaurants', restaurantRoutes);
+app.use('/api/menus', menuRoutes);
+app.use('/api/inventory', inventoryRoutes);
 
 
 module.exports = app
